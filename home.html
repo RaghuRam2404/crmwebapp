@@ -28,37 +28,15 @@
 			</div>
 		</div>
 		<div class="container">
-			<!--div class="row">
-				<select class='select-style' onchange="typeChange();" id='approvaltype'>
-					<option value='false'>Pending</option>
-					<option value='true'>Approved</option>
-					<option value='both'>All</option>
-				</select>
-			</div-->
 			<div class='row'>
 				<div class='col-3'>
-					<div class='filteroption'>
-						<span id='currentoption'>Pending Applications</span><span id='icon' >&nbsp; &nbsp;<img src='./images/downarrow.png' class='downarrow'/></span>
-					</div>
-					<div class="options">
-						<div class="arrow-up">
-							
-						</div>
-						<div class='availableoptions'>
-							<div class='optionone'>All Applications</div>
-							<div class='optionone'>Pending Applications</div>
-							<div class='optionone'>Rejected</div>
-							<div class='optionone'>Approved</div>
-						</div>
-					</div>
 				</div>
 				<div class='col-1'>
-
 				</div>
 				<div class='col-4'>
 						<div class='menuholder'>
-							<div class='menutab'>Home</div>
-							<div class='menutab menuselected'>Applications</div>
+							<div class='menutab menuselected'>Home</div>
+							<div class='menutab'>Applications</div>
 						</div>
 				</div>
 				<div class='col-4'>
@@ -66,25 +44,20 @@
 				</div>
 			</div>
 		</div>
-		<div class='container tablecontainer'>
-			<div class="row">
-				<div class="col-2 tbheader">Applicant Name</div>
-				<div class="col-2 tbheader">Phone</div>
-				<div class="col-2 tbheader">Email</div>
-				<div class="col-2 tbheader">Street</div>
-				<div class="col-2 tbheader">Region</div>
-				<div class="col-2 tbheader">Status</div>
+		<div class='container'>
+			<div class='row'>
+				<div class='col-6'>
+					<img src='./images/pie.jpg' height="262px" width="480px" />
+				</div>
+				<div class='col-6'>
+					<img src='./images/compare.jpg' height="262px" width="460px" />
+				</div>
 			</div>
-		</div>
-		<div class="container tablecontainer mt1" id='leaddata'>
-			<!--div class="row">
-				<div class="col-2">col1</div>
-				<div class="col-2">col1</div>
-				<div class="col-2">col1</div>
-				<div class="col-2">col1</div>
-				<div class="col-2">col1</div>
-				<div class="col-2">col1</div>
-			</div-->
+			<div class='row barrow'>
+				<div class='col-12'>
+					<img src='./images/bar.jpg' height="316px" width="960px" />
+				</div>
+			</div>
 		</div>
 		<div class="container copyright">
 			<div class="row">
@@ -96,21 +69,7 @@
 <script type="text/javascript">
 	checkLogin(true);
 	document.getElementsByTagName("body")[0].style.display="block";
-	//document.getElementsByClassName("options")[0].style.left = ((window.innerWidth-1000)/2+65)+"px"
-	document.getElementsByClassName('options')[0].style.display = 'none'
-	populateData();
-	hoverFunction();
-	$("body").click(function(){
-		$(".options").hide();
-	});
-	$(".filteroption").click(function(event){
-		toggle();
-		event.stopPropagation();
-	});
-	$(".optionone").click(function(){
-		var type = $(this).html();
-		location.href = getBaseURL()+"/view.html?type="+type;
-	})
+	loadTopBar();
 	$(".menutab").click(function(){
 		var menu = $(this).html();
 		var link = "";

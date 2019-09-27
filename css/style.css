@@ -149,11 +149,11 @@
 
 .filteroption{
 	cursor: pointer;
-	margin-top: 34px;
+	margin-top: 20px;
 	margin-left: 20px;
 	width: 191px;
 	height: 44px;
-	background: #FFFFFF 0% 0% no-repeat padding-box;
+	/*background: #FFFFFF 0% 0% no-repeat padding-box;*/
 	border-radius: 2px;
 	opacity: 1;
 	text-align: center;
@@ -164,6 +164,11 @@
 	letter-spacing: 0;
 	color: #40403E;
 	opacity: 1;
+}
+
+#currentoption{
+	border-bottom: 1px solid Black;
+	padding-bottom: 4px;
 }
 
 .downarrow{
@@ -184,7 +189,8 @@
 	top: 80px;
 	left: -146px;*/
 	position: absolute;
-	top: 145px;
+	top: 66px;
+	left: 80px;
 	z-index: 100;
 }
 
@@ -222,6 +228,41 @@
   border-bottom: 7px solid white;
   margin-left: 115px;
 }
+
+.menuholder{
+	width: 214px;
+	height: 38px;
+	margin: 20px auto;
+}
+
+.menutab{
+	height: 38px;
+	width: 107px;
+	display: block;
+	float: left;
+	background: #FFFFFF 0% 0% no-repeat padding-box;
+	border-radius: 2px;
+	opacity: 1;
+	text-align: center;
+	font-weight: Medium;
+	font-size:  15px;
+	font-family:  Proxima Nova;
+	letter-spacing: 0;
+	color: #555555;
+	opacity: 1;
+	padding-top: 8px;
+	cursor: pointer;
+}
+
+.menuselected{
+	background: #5F67FB 0% 0% no-repeat padding-box;
+	border-radius: 1px;
+	color: #FFFFFF;
+}
+
+.barrow{
+	margin-top: 20px;
+}
 /**box**/
 
 .indrow:hover{
@@ -232,7 +273,7 @@
 
 .tablecontainer{
 	width: 960px;
-	margin-top: 22px;
+	/*margin-top: 22px;*/
 	background: #FFFFFF 0% 0% no-repeat padding-box;
 	box-shadow: 0px 2px 4px #00000017;
 	opacity: 1;

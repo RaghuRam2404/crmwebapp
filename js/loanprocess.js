@@ -15,7 +15,7 @@ var defaultOption = 1;
 function checkLogin(bool){
 	var isLoggedIn = localStorage.hasOwnProperty('access_token');
 	if(!((!isLoggedIn && !bool) || (isLoggedIn && bool)))
-		location.href = getBaseURL()+(isLoggedIn?"/view.html":"/index.html");
+		location.href = getBaseURL()+(isLoggedIn?"/home.html":"/index.html");
 	if(document.getElementById("zes_client_scope") == null){
 		var elem = document.createElement('div');
 		elem.setAttribute("data-scope",SCOPES);
