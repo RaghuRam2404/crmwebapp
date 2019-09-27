@@ -392,7 +392,7 @@ function auth()
                     redirect_url += "/"
                 }
                 for (var i=0;i<length;i++){
-                    if(pathSplit[i] !== "" && pathSplit[i].trim().length > 0){
+                    if(pathSplit[i] !== "" && pathSplit[i].trim().length > 0 && !pathSplit[i].endsWith(".html")){
                         redirect_url +=pathSplit[i]+"/";
                     }
                 }
