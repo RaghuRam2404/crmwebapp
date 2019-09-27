@@ -31,7 +31,7 @@ function getBaseURL(){
 	var add = "";
 	if(window.location.host.includes("github"))
 		add = "/crmwebapp"
-	return window.location.protocol+"//"+window.location.host;
+	return window.location.protocol+"//"+window.location.host+add;
 }
 
 function getUrlVars() {
