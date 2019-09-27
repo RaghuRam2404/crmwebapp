@@ -15,7 +15,7 @@ var defaultOption = 1;
 function checkLogin(bool){
 	var isLoggedIn = localStorage.hasOwnProperty('access_token');
 	if(!((!isLoggedIn && !bool) || (isLoggedIn && bool)))
-		location.href = window.location.protocol+"//"+window.location.host+(isLoggedIn?"/view.html":"/index.html");
+		location.href = getBaseURL()+(isLoggedIn?"/view.html":"/index.html");
 	if(document.getElementById("zes_client_scope") == null){
 		var elem = document.createElement('div');
 		elem.setAttribute("data-scope",SCOPES);
@@ -28,6 +28,9 @@ function checkLogin(bool){
 }
 
 function getBaseURL(){
+	var add = "";
+	if(window.location.host.includes("github"))
+		add = "/crmwebapp"
 	return window.location.protocol+"//"+window.location.host;
 }
 
@@ -123,7 +126,7 @@ function getName(){
 }
 
 function view(id){
-	window.location.href = window.location.protocol+"//"+window.location.host+"/approve.html?id="+id+"&from="+encodeURIComponent(window.location.href);
+	window.location.href = getBaseURL()+"/approve.html?id="+id+"&from="+encodeURIComponent(window.location.href);
 }
 
 function print(value){
