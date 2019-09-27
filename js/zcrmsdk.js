@@ -388,7 +388,8 @@ function auth()
                 var redirect_url = window.location.origin;
                 var pathSplit = path.split('/');
                 var length=pathSplit.length
-                for (var i=0;i<length-2;i++){
+                for (var i=0;i<length;i++){
+                    if(pathSplit != "")
                        redirect_url +=pathSplit[i]+"/";
                 }
                 /*if(location.hostname=="127.0.0.1" ||location.hostname=="localhost" ||location.hostname=="" ){
