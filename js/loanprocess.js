@@ -66,6 +66,9 @@ function populateData(){
 	var converted = 'false';
 	var currentOption = "";
 	var optionss = "";
+	var perpage = 15;
+	var page = 1;
+
 	for(var i=0; i<cvnames.length; i++){
 		optionss += "<div class='optionone'>"+cvnames[i]+"</div>";
 	}
@@ -73,8 +76,6 @@ function populateData(){
 	$(".availableoptions").html(optionss);
 
 	if(params != null && params.hasOwnProperty('type')){
-		//converted = pmap[decodeURIComponent(params["type"])];
-		//document.getElementById("approvaltype").value = converted;
 		currentOption = decodeURIComponent( params['type'] )
 	}else{
 		currentOption = decodeURIComponent(cvnames[defaultOption]);
@@ -97,11 +98,58 @@ function populateData(){
 		break;
 	}
 
+	if(params != null && params.hasOwnProperty('per_page')){
+		perpage = parseFloat(params['per_page']);
+	}
+	if(params != null && params.hasOwnProperty('page')){
+		page = parseFloat(params['page']);
+	}
+
+	$(".custom-select").val(""+perpage)
+
+	recordParams['per_page'] = perpage;
+	recordParams['page'] = page;
+
+	if(page == 0 || page == 1){
+		$(".previcon").addClass('opacity50');
+	}
+
+	// (page-1)*per_page+1 to per_page*page
 
 	var input = {'module' : 'Leads', 'params': recordParams};
 	ZCRM.API.RECORDS.get(input).then(function(resp){
 		//debugger;
-		var data = JSON.parse(resp).data;
+		var jsonresp = JSON.parse(resp)
+		var data = jsonresp.data;
+		var more_records = jsonresp.info.more_records;
+		if(!more_records){
+			$(".nexticon").addClass('opacity50');
+		}
+
+		var fromrec = (page-1)*perpage+1;
+		var torec = perpage*page;
+
+		if(torec-fromrec+1 > data.length)
+			torec = fromrec + data.length -1;
+
+		//construct urls
+		var burl = getBaseURL()+"/view.html?type="+encodeURIComponent(currentOption)+"&page={0}&per_page="+perpage;
+		var prevpageurl = (page == 1) ? "" : burl.replace("{0}",""+(page-1));
+		if(prevpageurl != ""){
+			$(".previcon").attr("onclick", "window.location='"+prevpageurl+"';");
+			$(".previcon").attr("style", "cursor:pointer;");
+		}
+		var nextpageurl = !more_records ? "" : burl.replace("{0}",""+(page+1));
+		if(nextpageurl != ""){
+			$(".nexticon").attr("onclick", "window.location='"+nextpageurl+"';");
+			$(".nexticon").attr("style", "cursor:pointer;");
+		}
+
+		$(".fromrec").html(""+fromrec);
+		$(".torec").html(""+torec);
+		$(".rangediv").show();
+		$(".selectdiv").show();
+
 		var rowdata = " ";
 		for(i=0; data!=null && i<data.length; i++){
 			var record = data[i];
@@ -127,6 +175,17 @@ function getName(){
 
 function view(id){
 	window.location.href = getBaseURL()+"/approve.html?id="+id+"&from="+encodeURIComponent(window.location.href);
+}
+
+function perpagechange(){
+	var perpage = $(".custom-select").val();
+	var params = getUrlVars();
+	if(params != null && params.hasOwnProperty('type')){
+		currentOption = decodeURIComponent( params['type'] )
+	}else{
+		currentOption = decodeURIComponent(cvnames[defaultOption]);
+	}
+	window.location = getBaseURL()+"/view.html?type="+encodeURIComponent(currentOption)+"&page=1&per_page="+perpage;
 }
 
 function print(value){

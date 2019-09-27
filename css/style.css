@@ -306,6 +306,43 @@
 	opacity: 1;
 }
 
+.navigation{
+	margin-top: 20px;
+}
+
+.selectdiv, .rangediv{
+	display: none;
+	position: relative;
+	float: right;
+	margin-right: 20px;
+}
+
+.mt5{
+	margin-top: 5px;
+}
+
+.previcon, .nexticon{
+	height: 19px;
+	width: 19px;
+}
+
+.opacity50{
+	opacity: .5;
+}
+
+.rangespan{
+	font-weight: Medium;
+	font-size: 16px;
+	font-weight: Proxima Nova;
+	letter-spacing: 0;
+	color: #222222;
+	opacity: 1;
+}
+
+.tocolor{
+	color: #969696;
+}
+
 .copyright{
 	margin-top: 70px;
 	padding-bottom: 20px;

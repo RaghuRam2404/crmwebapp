@@ -86,6 +86,29 @@
 				<div class="col-2">col1</div>
 			</div-->
 		</div>
+		<div class="container navigation">
+			<div class='row'>
+				<div class='col-12'>
+					<div class='rangediv mt5'> 
+						<span class="prevspan"><img src='./images/prev.png' class='previcon' /></span>
+						<span class='rangespan'>
+							<span class='fromrec'>1</span>&nbsp;<span class='tocolor'>to</span>&nbsp;<span class='torec'>10</span> 
+						</span>
+						<span class="nextspan"><img src='./images/next.png' class='nexticon' /></span>
+					</div>
+					<div class='selectdiv'>
+						<select class="custom-select" onchange="perpagechange();" style="width: 200px; height: 36px;">
+							<option value="10">10 records per page</option>
+							<option value="15">15 records per page</option>
+							<option value="20">20 records per page</option>
+							<option value="30">30 records per page</option>
+							<option value="50">50 records per page</option>
+							<option value="100">100 records per page</option>
+						</select>
+					</div>
+				</div>
+			</div>
+		</div>
 		<div class="container copyright">
 			<div class="row">
 				<div class='col-12'>&copy; 2019, Zillum Inc. All Rights Reserved.</div>
@@ -109,7 +132,7 @@
 	});
 	$(".optionone").click(function(){
 		var type = $(this).html();
-		location.href = getBaseURL()+"/view.html?type="+type;
+		location.href = getBaseURL()+"/view.html?type="+type+"&per_page="+$(".custom-select").val();
 	})
 	$(".menutab").click(function(){
 		var menu = $(this).html();
