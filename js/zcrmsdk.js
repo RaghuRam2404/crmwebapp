@@ -388,9 +388,13 @@ function auth()
                 var redirect_url = window.location.origin;
                 var pathSplit = path.split('/');
                 var length=pathSplit.length
+                if(length > 0){
+                    redirect_url += "/"
+                }
                 for (var i=0;i<length;i++){
-                    if(pathSplit != "")
-                       redirect_url +=pathSplit[i]+"/";
+                    if(pathSplit[i] !== "" && pathSplit[i].trim().length > 0){
+                        redirect_url +=pathSplit[i]+"/";
+                    }
                 }
                 /*if(location.hostname=="127.0.0.1" ||location.hostname=="localhost" ||location.hostname=="" ){
                     redirect_url += "app/"
