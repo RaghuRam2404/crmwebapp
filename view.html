@@ -1,0 +1,101 @@
+  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script  src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+<script type="text/javascript" src="./js/loanprocess.js"></script>
+<script src="./js/zcrmsdk.js" ></script>
+<title>Zillum Loan Application Portal</title>
+</head>
+<body style="display: none;">
+	<div id='maincontainer'>
+		<div class="container">
+			<div class='row' id='toprow'>
+				<div class="col-3 mt11">
+					<img src="./images/zillumicon.png" id='logo2'>
+					<span id='logotext2'>Zillum Inc</span>
+				</div>
+				<div class="col-6">&nbsp;</div>
+				<div class="col-3 mt14" id='topname'>
+					
+				</div>
+			</div>
+		</div>
+		<div class="container">
+			<!--div class="row">
+				<select class='select-style' onchange="typeChange();" id='approvaltype'>
+					<option value='false'>Pending</option>
+					<option value='true'>Approved</option>
+					<option value='both'>All</option>
+				</select>
+			</div-->
+			<div class='row'>
+				<div class='filteroption'>
+					<span id='currentoption'>Pending Applications</span><span id='icon' >&nbsp; &nbsp;<img src='./images/downarrow.png' class='downarrow'/></span>
+				</div>
+				<div class="options">
+					<div class="arrow-up">
+						
+					</div>
+					<div class='availableoptions'>
+						<div class='optionone'>All Applications</div>
+						<div class='optionone'>Pending Applications</div>
+						<div class='optionone'>Rejected</div>
+						<div class='optionone'>Approved</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class='container tablecontainer'>
+			<div class="row">
+				<div class="col-2 tbheader">Applicant Name</div>
+				<div class="col-2 tbheader">Phone</div>
+				<div class="col-2 tbheader">Email</div>
+				<div class="col-2 tbheader">Street</div>
+				<div class="col-2 tbheader">Region</div>
+				<div class="col-2 tbheader">Status</div>
+			</div>
+		</div>
+		<div class="container tablecontainer mt1" id='leaddata'>
+			<!--div class="row">
+				<div class="col-2">col1</div>
+				<div class="col-2">col1</div>
+				<div class="col-2">col1</div>
+				<div class="col-2">col1</div>
+				<div class="col-2">col1</div>
+				<div class="col-2">col1</div>
+			</div-->
+		</div>
+		<div class="container copyright">
+			<div class="row">
+				<div class='col-12'>&copy; 2019, Zillum Inc. All Rights Reserved.</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script type="text/javascript">
+	checkLogin(true);
+	document.getElementsByTagName("body")[0].style.display="block";
+	document.getElementsByClassName("options")[0].style.left = ((window.innerWidth-1000)/2+65)+"px"
+	document.getElementsByClassName('options')[0].style.display = 'none'
+	populateData();
+	hoverFunction();
+	$("body").click(function(){
+		$(".options").hide();
+	});
+	$(".filteroption").click(function(event){
+		toggle();
+		event.stopPropagation();
+	});
+	$(".optionone").click(function(){
+		var type = $(this).html();
+		location.href = window.location.protocol+"//"+window.location.host+"/view.html?type="+type;
+	})
+</script>
+</html>

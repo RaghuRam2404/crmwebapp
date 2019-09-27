@@ -1,0 +1,43 @@
+  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="./css/style.css">
+<script  src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+<script type="text/javascript" src="./js/loanprocess.js"></script>
+<script src="./js/zcrmsdk.js" ></script>
+<style type="text/css">
+	body{
+		height: 100%;
+		width: 100%;
+	}
+</style>
+</head>
+<body style="display: none;" id='mainbody'>
+	<div id='leftbody'>
+		&nbsp;
+	</div>
+	<div id='rightbody'>
+		<div id='maincontent'>
+			<div id="company">
+				<img src="./images/zillumicon.png" id='logo'>
+				<span id='logotext'>Zillum Inc</span>
+				<div id='companydesc'>
+					Zillium App, a power tool to review all  your home loan applications in one place, in no time. Stay on top of your applications to be verified and get them moving for quick evaluation.
+				</div>
+			</div>
+			<button id='loginbtn' onclick="getName();">Log in with Zoho CRM</button>
+		</div>
+	</div>
+	
+</body>
+<script type="text/javascript">
+	checkLogin(false);
+	document.getElementById("leftbody").style.height=window.innerHeight+"px";
+	document.getElementById("rightbody").style.height=window.innerHeight+"px";
+	document.getElementById("leftbody").style.width=(window.innerWidth/2)+"px";
+	document.getElementById("rightbody").style.width=(window.innerWidth/2)+"px";
+	document.getElementsByTagName("body")[0].style.display="block";
+</script>
+</html>
