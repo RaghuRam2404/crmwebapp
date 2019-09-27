@@ -95,7 +95,7 @@
 	});
 	$(".optionone").click(function(){
 		var type = $(this).html();
-		location.href = window.location.protocol+"//"+window.location.host+"/view.html?type="+type;
+		location.href = getBaseURL()+"/view.html?type="+type;
 	})
 </script>
 </html>
