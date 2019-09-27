@@ -279,7 +279,7 @@
 	opacity: 1;
 }
 
-.tablecontainer .row .col-2{
+.tablecontainer .row .col-2,.tablecontainer .row .col-3,.tablecontainer .row .col-1{
 	margin: 10px 0px;
 }
 .tbheader{

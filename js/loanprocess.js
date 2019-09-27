@@ -6,7 +6,7 @@ var HTTP_PROTOCOL = "http://";
 var CLIENT_ID = "1000.Q9E406JIIMXV43406U49J68XQGAV9H";
 var SCOPES = "ZohoCRM.modules.Leads.ALL,ZohoCRM.users.READ,ZohoCRM.org.READ,AaaServer.profile.Read,ZohoCRM.modules.Notes.ALL,ZohoCRM.modules.attachments.ALL,ZohoCRM.modules.contacts.ALL";
 var ACCOUNTS_URL = "https://accounts.zoho.com"
-var checklists = [{"label":"SSN","id":"checkboxssn"},{"label":"Passport","id":"checkboxppt"},{"label":"Address","id":"checkboxadd"}];
+var checklists = [{"label":"SSN","id":"checkboxssn", 'api_name':'SSN'},{"label":"Passport","id":"checkboxppt", 'api_name':'Passport'},{"label":"Address","id":"checkboxadd", 'api_name':'Address'}];
 var files = [{"label":"SSN", "id": "myfilessn"},{"label":"Passport", "id": "myfileppt"},{"label":"Address", "id": "myfileadd"}];
 var cvidmapping = {"pending":"2938383000001645025", "rejected":"2938383000001666065", "approved":"converted", "all":"-1"}
 var cvnames = ["All Applications", "Pending Applications", "Rejected", "Approved"]
@@ -110,10 +110,10 @@ function populateData(){
 			var rowd = "<div "+(record['Lead_Status'] == "Pending" ? "style='cursor: pointer;' onclick='view(\""+record['id']+"\")'" : "")+ "class='row indrow'>"+
 							"<div class='col-2 tablecontent'>"+record['Full_Name']+"</div>"+
 							"<div class='col-2 tablecontent'>"+record['Phone']+"</div>"+
-							"<div class='col-2 tablecontent'>"+record['Email']+"</div>"+
+							"<div class='col-3 tablecontent'>"+record['Email']+"</div>"+
 							"<div class='col-2 tablecontent'>"+record['Street']+"</div>"+
 							"<div class='col-2 tablecontent'>"+record['State']+"</div>"+
-							"<div class='col-2 tablecontent'>"+record['Lead_Status']+"</div>"+
+							"<div class='col-1 tablecontent'>"+record['Lead_Status']+"</div>"+
 						"</div>";
 			rowdata += rowd;
 		}
@@ -215,8 +215,11 @@ function convertlead(id){
 		var dateString = new Date().toLocaleDateString();
 		var timeString = new Date().toLocaleTimeString();
 		var content = "";
+		var contactdata = {};
 		for(var i=0; i<checklists.length; i++){
-			content += checklists[i].label+" Verification :  "+document.getElementById(checklists[i].id).checked+"\n";
+			var checked = document.getElementById(checklists[i].id).checked;
+			content += checklists[i].label+" Verification :  "+(checked)+"\n";
+			contactdata[checklists[i].api_name] = checked
 		}
 		var inp = {'module':'Notes', 'body':{'data':[{'Note_Title':'Approval Details', 'Note_Content':'Approved on '+dateString+" "+timeString+"\n"+content, 'Parent_Id':''+data, 'se_module':'Contacts'}]}};
 		ZCRM.API.RECORDS.post(inp).then(function(res){
@@ -229,11 +232,17 @@ function convertlead(id){
 				var input = {module:'Contacts', id:data['Contacts'], x_file_content:file1}
 				ZCRM.API.ATTACHMENTS.uploadFile(input).then(function(resp){console.log(resp); count++; });
 			}
+			var input = {'id':data['Contacts'], 'module':'Contacts', 'body':{'data':[contactdata]}};
+			ZCRM.API.RECORDS.put(input).then(function(resp){
+				count++;
+				console.log(resp);
+				debugger
+			});
 		});
 	});
 
 	setInterval(function(){
-		if(count == files.length){
+		if(count == files.length+1){
 			hideLoading();
 			//$("#overlay").show();
 			//$(".application_approved").show();
