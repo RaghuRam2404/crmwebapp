@@ -1,0 +1,132 @@
+  
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="./css/style2.css">
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+<script  src="https://code.jquery.com/jquery-3.3.1.min.js" ></script>
+<script type="text/javascript" src="./js/loanprocess.js"></script>
+<script src="./js/zcrmsdk.js" ></script>
+</head>
+<body style="display: none;">
+		<div class="topcontainer">
+			<div class='row newbar' id='toprow'>
+				<div class="col-3 mt11">
+					<img src="./images/zillumicon.png" id='logo2'>&nbsp;&nbsp;&nbsp;
+					<span id='logotext2'>Zillum Inc</span>
+				</div>
+				<div class="col-6">&nbsp;</div>
+				<div class="col-3 mt14" id='topname'>
+					
+				</div>
+			</div>
+		</div>
+	<div id='maincontainer'>
+		<div class="container" id='appleaddata'>
+			<div class="row firstrow">
+				<div class='col-1'>
+					<!-- Icon made by Freepik from www.flaticon.com -->
+					<img src="./images/leftarrow.png" class='leftarrow' />
+				</div>
+				<div class='col-8'>
+					<div class='nameholder'>
+						<div class='applicantname'>
+							Applicant Name
+						</div>
+						<div class='realname'>
+							
+						</div>
+					</div>
+				</div>
+				<div class='col-3'>
+					<div class='approvalholder'>
+						<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/smashicons" title="Smashicons">Smashicons</a> from <a href="https://www.flaticon.com/"         title="Flaticon">www.flaticon.com</a></div> -->
+						<img src='./images/locked.png' class='lockicon' />&nbsp;
+						<div class='waiting'>Waiting for your approval</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container" id='leaddata2'>
+			<div class='row rowheading'>Applicant Details</div>
+			<div class='row rowvalue'><span class='fieldname'>Phone</span><span class='fieldvalue' id='rowphone'></span></div>
+			<div class='row rowvalue'><span class='fieldname'>Email</span><span class='fieldvalue' id='rowemail'></span></div>
+			<div class='row rowvalue'><span class='fieldname'>Street</span><span class='fieldvalue' id='rowstreet'></span></div>
+			<div class='row rowvalue'><span class='fieldname'>Region</span><span class='fieldvalue' id='rowregion'></span></div>
+		</div>
+
+		<div class="container" id='leaddata3'>
+			<div class='row rowheading'>Verification Documents</div>
+			<div class='row rowvalue'>
+				<span class='fieldname2'>SSN</span>
+				<span class='fieldvalue' id='rowssn'>
+					<div class="upload-btn-wrapper">
+					  <button class="btn">Click here to attach</button>
+					  <input type="file" name="myfilessn" id='myfilessn' />
+					</div>
+				</span>
+				<span class='filename fieldvalue' id='filenamessn'></span>
+				<span class='spanchk'><input type='checkbox' class='checkbox' id='checkboxssn' /></span>
+			</div>
+			<div class='row rowvalue'>
+				<span class='fieldname2'>Passport</span>
+				<span class='fieldvalue' id='rowpassport'>
+					<div class="upload-btn-wrapper">
+					  <button class="btn">Click here to attach</button>
+					  <input type="file" name="myfileppt" id='myfileppt' />
+					</div>
+				</span>
+				<span class='filename fieldvalue' id='filenameppt'></span>
+				<span class='spanchk'><input type='checkbox' class='checkbox' id='checkboxppt' /></span>
+			</div>
+			<div class='row rowvalue'>
+				<span class='fieldname2'>Address</span>
+				<span class='fieldvalue' id='rowaddress'>
+					<div class="upload-btn-wrapper">
+					  <button class="btn">Click here to attach</button>
+					  <input type="file" name="myfileadd" id='myfileadd' />
+					</div>
+				</span>
+				<span class='filename fieldvalue' id='filenameadd'></span>
+				<span class='spanchk'><input type='checkbox' class='checkbox' id='checkboxadd' /></span>
+			</div>
+		</div>
+
+		<div class="container" id='buttonarea'>
+			<button class='rejectbtn' >Reject</button>
+			<button class='approvebtn'  >Approve</button>
+		</div>
+
+		<div class="container copyright">
+			<div class="row">
+				<div class='col-12'>&copy; 2019, Zillum Inc. All Rights Reserved.</div>
+			</div>
+		</div>
+	</div>
+	<div id='overlay' style='display: none;'></div>
+	<div class="cssload-loader" style="display: none;">Approving ...</div>
+	<div class="application_approved" style="display: none;">Applicaton Approved</div>
+	<div class="application_rejected" style="display: none;">Applicaton Rejected</div>
+
+</body>
+<script type="text/javascript">
+	checkLogin(true);
+	populateIndividualData();
+	loadTopBar();
+	$("input[type='file']").change(function(){ 
+		var uploadedname = this.files[0].name;
+		var filename = $(this).attr('name')
+		filename = filename.replace('myfile', 'filename')
+		var finalname = uploadedname;
+		if(finalname.length > 30)
+			finalname = finalname.substring(0,22)+" ... "+finalname.substring(finalname.length-6, finalname.length);
+		$("#"+filename).html(finalname);
+	});
+	document.getElementsByTagName("body")[0].style.display="block";
+</script>
+</html>

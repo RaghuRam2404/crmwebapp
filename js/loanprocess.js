@@ -1,7 +1,7 @@
 /*
 Master account : raghuram.t+demo@zohotest.com
 */
-
+var newtry = false;
 var HTTP_PROTOCOL = "http://";
 var CLIENT_ID = "1000.Q9E406JIIMXV43406U49J68XQGAV9H";
 var SCOPES = "ZohoCRM.modules.Leads.ALL,ZohoCRM.users.READ,ZohoCRM.org.READ,AaaServer.profile.Read,ZohoCRM.modules.Notes.ALL,ZohoCRM.modules.attachments.ALL,ZohoCRM.modules.contacts.ALL";
@@ -9,13 +9,21 @@ var ACCOUNTS_URL = "https://accounts.zoho.com"
 var checklists = [{"label":"SSN","id":"checkboxssn", 'api_name':'SSN'},{"label":"Passport","id":"checkboxppt", 'api_name':'Passport'},{"label":"Address","id":"checkboxadd", 'api_name':'Address'}];
 var files = [{"label":"SSN", "id": "myfilessn"},{"label":"Passport", "id": "myfileppt"},{"label":"Address", "id": "myfileadd"}];
 var cvidmapping = {"pending":"2938383000001645025", "rejected":"2938383000001666065", "approved":"converted", "all":"-1"}
-var cvnames = ["All Applications", "Pending Applications", "Rejected", "Approved"]
+var cvnames = ["All Applications", "Pending Applications", "Rejected Applications", "Approved Applications"]
 var defaultOption = 1;
+
+function getNum(){
+	var html = window.location.pathname;
+	if(html.endsWith("2.html")){
+		return "2";
+	}
+	return "";
+}
 
 function checkLogin(bool){
 	var isLoggedIn = localStorage.hasOwnProperty('access_token');
 	if(!((!isLoggedIn && !bool) || (isLoggedIn && bool)))
-		location.href = getBaseURL()+(isLoggedIn?"/home.html":"/index.html");
+		location.href = getBaseURL()+(isLoggedIn?"/home"+getNum()+".html":"/index"+getNum()+".html");
 	if(document.getElementById("zes_client_scope") == null){
 		var elem = document.createElement('div');
 		elem.setAttribute("data-scope",SCOPES);
@@ -44,7 +52,7 @@ function getUrlVars() {
 
 function typeChange(){
 	//var type = document.getElementById('approvaltype').value;
-	location.href = getBaseURL()+"/view.html?type="+type;
+	location.href = getBaseURL()+"/view"+getNum()+".html?type="+type;
 }
 
 function loadTopBar(){
@@ -133,7 +141,8 @@ function populateData(){
 			torec = fromrec + data.length -1;
 
 		//construct urls
-		var burl = getBaseURL()+"/view.html?type="+encodeURIComponent(currentOption)+"&page={0}&per_page="+perpage;
+		var html = "view"+getNum()+".html"
+		var burl = getBaseURL()+"/"+html+"?type="+encodeURIComponent(currentOption)+"&page={0}&per_page="+perpage;
 		var prevpageurl = (page == 1) ? "" : burl.replace("{0}",""+(page-1));
 		if(prevpageurl != ""){
 			$(".previcon").attr("onclick", "window.location='"+prevpageurl+"';");
@@ -150,22 +159,48 @@ function populateData(){
 		$(".rangediv").show();
 		$(".selectdiv").show();
 
-		var rowdata = " ";
-		for(i=0; data!=null && i<data.length; i++){
-			var record = data[i];
-			if(record['Lead_Status'] == 'Pre-Qualified')
-				record['Lead_Status'] = 'Approved'
-			var rowd = "<div "+(record['Lead_Status'] == "Pending" ? "style='cursor: pointer;' onclick='view(\""+record['id']+"\")'" : "")+ "class='row indrow'>"+
-							"<div class='col-2 tablecontent'>"+record['Full_Name']+"</div>"+
-							"<div class='col-2 tablecontent'>"+record['Phone']+"</div>"+
-							"<div class='col-3 tablecontent'>"+record['Email']+"</div>"+
-							"<div class='col-2 tablecontent'>"+record['Street']+"</div>"+
-							"<div class='col-2 tablecontent'>"+record['State']+"</div>"+
-							"<div class='col-1 tablecontent'>"+record['Lead_Status']+"</div>"+
-						"</div>";
-			rowdata += rowd;
+		if(getNum() == ""){
+			var rowdata = " ";
+			for(i=0; data!=null && i<data.length; i++){
+				var record = data[i];
+				if(record['Lead_Status'] == 'Pre-Qualified')
+					record['Lead_Status'] = 'Approved'
+				var mail = record['Email'];
+				if(mail.length > 15)
+					mail = mail.substring(0,15)+"..."
+				var rowd = "<div "+(record['Lead_Status'] == "Pending" ? "style='cursor: pointer;' onclick='view(\""+record['id']+"\")'" : "")+ "class='row indrow'>"+
+								"<div class='col-2 tablecontent'>"+record['Full_Name']+"</div>"+
+								"<div class='col-2 tablecontent'>"+record['Phone']+"</div>"+
+								"<div class='col-3 tablecontent'>"+mail+"</div>"+
+								"<div class='col-2 tablecontent'>"+record['Street']+"</div>"+
+								"<div class='col-2 tablecontent'>"+record['State']+"</div>"+
+								"<div class='col-1 tablecontent'>"+record['Lead_Status']+"</div>"+
+							"</div>";
+				rowdata += rowd;
+			}
+			document.getElementById("leaddata").innerHTML = rowdata;
+		}else{
+			//newtbody
+			var rowdata = " ";
+			for(i=0; data!=null && i<data.length; i++){
+				var record = data[i];
+				if(record['Lead_Status'] == 'Pre-Qualified')
+					record['Lead_Status'] = 'Approved'
+				var mail = record['Email'];
+				if(mail.length > 16)
+					mail = mail.substring(0,16)+"..."+mail.substring(mail.length-5, mail.length)
+				var rowd = "<tr "+(record['Lead_Status'] == "Pending" ? "style='cursor: pointer;' onclick='view(\""+record['id']+"\")'" : "")+ ">"+
+								"<td class='name'>"+record['Full_Name']+"</td>"+
+								"<td class='phone'>"+record['Phone']+"</td>"+
+								"<td class='email'>"+mail+"</td>"+
+								"<td class='street'>"+record['Street']+"</td>"+
+								"<td class='region'>"+record['State']+"</td>"+
+								"<td>"+record['Lead_Status']+"</td>"+
+							"</tr>";
+				rowdata += rowd;
+			}
+			document.getElementsByClassName("newtbody")[0].innerHTML = rowdata;
 		}
-		document.getElementById("leaddata").innerHTML = rowdata;
 	});
 }
 
@@ -174,7 +209,7 @@ function getName(){
 }
 
 function view(id){
-	window.location.href = getBaseURL()+"/approve.html?id="+id+"&from="+encodeURIComponent(window.location.href);
+	window.location.href = getBaseURL()+"/approve"+getNum()+".html?id="+id+"&from="+encodeURIComponent(window.location.href);
 }
 
 function perpagechange(){
@@ -185,7 +220,7 @@ function perpagechange(){
 	}else{
 		currentOption = decodeURIComponent(cvnames[defaultOption]);
 	}
-	window.location = getBaseURL()+"/view.html?type="+encodeURIComponent(currentOption)+"&page=1&per_page="+perpage;
+	window.location = getBaseURL()+"/view"+getNum()+".html?type="+encodeURIComponent(currentOption)+"&page=1&per_page="+perpage;
 }
 
 function print(value){
@@ -306,7 +341,7 @@ function convertlead(id){
 			//$("#overlay").show();
 			//$(".application_approved").show();
 			//setTimeout(function(){
-				window.location = getBaseURL()+"/view.html?type="+cvnames[1]
+				window.location = getBaseURL()+"/view"+getNum()+".html?type="+cvnames[1]
 			//}, 2000);
 		}
 	}, 200)
@@ -323,7 +358,7 @@ function rejectlead(id){
 		//$("#overlay").show();
 		//$(".application_rejected").show();
 		//setTimeout(function(){
-			window.location = getBaseURL()+"/view.html?type="+cvnames[1]
+			window.location = getBaseURL()+"/view"+getNum()+".html?type="+cvnames[1]
 		//}, 2000);
 	});
 }

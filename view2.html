@@ -4,7 +4,7 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-<link rel="stylesheet" type="text/css" href="./css/style.css">
+<link rel="stylesheet" type="text/css" href="./css/style2.css">
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
@@ -14,11 +14,10 @@
 <title>Zillum Loan Application Portal</title>
 </head>
 <body style="display: none;">
-	<div id='maincontainer'>
-		<div class="container">
-			<div class='row' id='toprow'>
+		<div class="topcontainer">
+			<div class='row newbar' id='toprow'>
 				<div class="col-3 mt11">
-					<img src="./images/zillumicon.png" id='logo2'>
+					<img src="./images/zillumicon.png" id='logo2'>&nbsp;&nbsp;&nbsp;
 					<span id='logotext2'>Zillum Inc</span>
 				</div>
 				<div class="col-6">&nbsp;</div>
@@ -27,18 +26,12 @@
 				</div>
 			</div>
 		</div>
+	<div id='maincontainer'>
 		<div class="container">
-			<!--div class="row">
-				<select class='select-style' onchange="typeChange();" id='approvaltype'>
-					<option value='false'>Pending</option>
-					<option value='true'>Approved</option>
-					<option value='both'>All</option>
-				</select>
-			</div-->
 			<div class='row'>
 				<div class='col-3'>
 					<div class='filteroption'>
-						<span id='currentoption'>Pending Applications</span><span id='icon' >&nbsp; &nbsp;<img src='./images/downarrow.png' class='downarrow'/></span>
+						<span id='currentoption'>Pending Applications</span><span id='icon' >&nbsp; &nbsp;<img src='./images/whitedownarrow.png' class='downarrow'/></span>
 					</div>
 					<div class="options">
 						<div class="arrow-up">
@@ -66,26 +59,21 @@
 				</div>
 			</div>
 		</div>
-		<div class='container tablecontainer'>
-			<div class="row">
-				<div class="col-2 tbheader">Applicant Name</div>
-				<div class="col-2 tbheader">Phone</div>
-				<div class="col-3 tbheader">Email</div>
-				<div class="col-2 tbheader">Street</div>
-				<div class="col-2 tbheader">Region</div>
-				<div class="col-1 tbheader">Status</div>
-			</div>
-		</div>
-		<div class="container tablecontainer mt1" id='leaddata'>
-			<!--div class="row">
-				<div class="col-2">col1</div>
-				<div class="col-2">col1</div>
-				<div class="col-2">col1</div>
-				<div class="col-2">col1</div>
-				<div class="col-2">col1</div>
-				<div class="col-2">col1</div>
-			</div-->
-		</div>
+		<table class="tablecontainer2">
+			<thead>
+				<tr>
+					<th class="name"><h1>Applicant Name</h1></th>
+					<th class='phone'><h1>Phone</h1></th>
+					<th class='email'><h1>Email</h1></th>
+					<th class="street"><h1>Street</h1></th>
+					<th class="region"><h1>Region</h1></th>
+					<th><h1>Status</h1></th>
+				</tr>
+			</thead>
+			<tbody class='newtbody'>
+
+			</tbody>
+		</table>
 		<div class="container navigation">
 			<div class='row'>
 				<div class='col-12'>
@@ -132,15 +120,15 @@
 	});
 	$(".optionone").click(function(){
 		var type = $(this).html();
-		location.href = getBaseURL()+"/view.html?type="+type+"&per_page="+$(".custom-select").val();
+		location.href = getBaseURL()+"/view2.html?type="+type+"&per_page="+$(".custom-select").val();
 	})
 	$(".menutab").click(function(){
 		var menu = $(this).html();
 		var link = "";
 		if(menu == 'Home')
-			link = "/home.html";
+			link = "/home2.html";
 		else 
-			link = "/view.html";
+			link = "/view2.html";
 		window.location = getBaseURL()+link
 	});
 </script>
