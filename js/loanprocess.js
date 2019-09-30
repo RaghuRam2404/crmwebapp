@@ -25,6 +25,11 @@ function getNum(){
 }
 
 function checkLogin(bool){
+
+	if(getNum() == "2"){
+		addClickListener();
+	}
+
 	var isLoggedIn = localStorage.hasOwnProperty('access_token');
 	if(!((!isLoggedIn && !bool) || (isLoggedIn && bool)))
 		location.href = getBaseURL()+(isLoggedIn?"/home"+getLanding()+".html":indexpage);
@@ -416,5 +421,15 @@ function hoverFunction(){
 			$(this).removeClass('selected');
 		});
 		$(this).addClass('selected');
+	});
+}
+
+function gotoHome(){
+	window.location = getBaseURL()+"/home"+getNum()+".html";
+}
+
+function addClickListener(){
+	$("#logocontainer").css("cursor","pointer").click(function(){
+		gotoHome();
 	});
 }
