@@ -193,14 +193,14 @@ body{
 }
 
 .menuholder{
-	width: 214px;
-	height: 38px;
+	width: 228px;
+	height: 40px;
 	margin: 20px auto;
 }
 
 .menutab{
-	height: 38px;
-	width: 107px;
+	height: 40px;
+	width: 114px;
 	display: block;
 	float: left;
 	background: #FFFFFF 0% 0% no-repeat padding-box;
@@ -208,7 +208,7 @@ body{
 	opacity: 1;
 	text-align: center;
 	font-weight: Medium;
-	font-size:  15px;
+	font-size:  18px;
 	font-family:  Proxima Nova;
 	letter-spacing: 0;
 	color: #555555;
