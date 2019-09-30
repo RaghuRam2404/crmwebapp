@@ -2,6 +2,7 @@
 Master account : raghuram.t+demo@zohotest.com
 */
 var HTTP_PROTOCOL = "http://";
+var indexpage = "/index.html";
 var CLIENT_ID = "1000.Q9E406JIIMXV43406U49J68XQGAV9H";
 var SCOPES = "ZohoCRM.modules.Leads.ALL,ZohoCRM.users.READ,ZohoCRM.org.READ,AaaServer.profile.Read,ZohoCRM.modules.Notes.ALL,ZohoCRM.modules.attachments.ALL,ZohoCRM.modules.contacts.ALL";
 var ACCOUNTS_URL = "https://accounts.zoho.com"
@@ -26,7 +27,7 @@ function getNum(){
 function checkLogin(bool){
 	var isLoggedIn = localStorage.hasOwnProperty('access_token');
 	if(!((!isLoggedIn && !bool) || (isLoggedIn && bool)))
-		location.href = getBaseURL()+(isLoggedIn?"/home"+getLanding()+".html":"/index.html");
+		location.href = getBaseURL()+(isLoggedIn?"/home"+getLanding()+".html":indexpage);
 	if(document.getElementById("zes_client_scope") == null){
 		var elem = document.createElement('div');
 		elem.setAttribute("data-scope",SCOPES);
@@ -75,6 +76,11 @@ function typeChange(){
 	location.href = getBaseURL()+"/view"+getNum()+".html?type="+type;
 }
 
+function logoutredirect(){
+	localStorage.clear();
+	window.location = getBaseURL()+indexpage;
+}
+
 function loadTopBar(){
 
 	ZCRM.API.USERS.get({"params":{"type":"CurrentUser"}}).then(function(resp){
@@ -83,7 +89,7 @@ function loadTopBar(){
     	var name = data["users"][0].full_name
     	document.getElementById("topname").innerHTML = "<span class='namediv'><span id='tophello'>Hello, </span><span id='topnamefull'>"+name+"</span>&nbsp;&nbsp;&nbsp;<span id='profileimg'>"+
     													"<img src='https://contacts.zoho.com/file?ID=634144653&fs=thumb' class='profileimage' />"
-    													+"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;"+"<span class='logouticon'  >"+logout()+"</span>";
+    													+"</span></span>&nbsp;&nbsp;&nbsp;&nbsp;"+"<span class='logouticon' onclick='logoutredirect()'  >"+logout()+"</span>";
     													//  onmouseenter='svghover(\"in\");' onmouseout='svghover(\"out\");'
 
 	});
