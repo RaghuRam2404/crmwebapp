@@ -2,85 +2,10 @@ body{
 	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;;
 }
 
-#mainbody{
-	background-color: #1F2739;
-	height: 100%;
-	width: 100%;
-	margin: 0px auto;
-}
-
 .topcontainer{
 	background-color: white;
 	max-width: 100%;
 }
-
-#leftbody{
-	display: block;
-	position: relative;
-	float: left;
-	width: 61.6%;
-	/*width: 849px;
-	height: 900px;*/
-	background-image: url("../images/bg.png");
-	background-position: center; 
-  	background-repeat: no-repeat;
-  	background-size: cover;
-}
-
-#rightbody{
-	display: block;
-	position: relative;
-	float: right;
-	width: 38.4%;
-	/*width: 529px;
-	min-height: 900px;*/
-}
-
-#maincontent{
-	width: 497px;
-	text-align: center;;
-	margin: 35% auto;
-}
-
-#logo{
-	width: 29px;
-	height: 33px;
-}
-
-#logotext{
-	text-align: left;
-	font: Bold 18px/35px Merriweather;
-	letter-spacing: 0;
-	color: #383838;
-	opacity: 1;
-}
-
-#companydesc{
-	margin-top: 60px;
-	text-align: center;
-	font: Medium 16px/28px Proxima Nova;
-	letter-spacing: 0;
-	color: #333333;
-	line-height: 28px;
-	opacity: 1;
-}
-
-
-#loginbtn{
-	width: 285px;
-	height: 56px;
-	background: transparent linear-gradient(360deg, #ED8049 0%, #DC6427 100%) 0% 0% no-repeat padding-box;
-	border-radius: 40px;
-	opacity: 1;
-	font: Medium 20px/35px Proxima Nova;
-	letter-spacing: 0;
-	color: #FFFFFF;
-	opacity: 1;
-	font-size: 20px;
-	margin-top: 30px;
-	cursor: pointer;
-}
-
 
 /** view.html page **/
 #maincontainer{
