@@ -119,6 +119,12 @@ body{
 	opacity: 1;
 }
 
+.namediv{
+	border: 1px solid #d1d1d1;
+	border-radius: 15px;
+	padding: 3px;
+}
+
 #topname{
 	text-align: left;
 	vertical-align: middle;
@@ -131,6 +137,7 @@ body{
 	font-family:  Proxima Nova;
 	letter-spacing: 0;
 	color: #383838;
+	padding-left: 5px;
 }
 
 #topnamefull{
@@ -152,7 +159,7 @@ body{
 	margin-top: 17px;
 }
 .mt14{
-	margin-top: 14px;
+	margin-top: 9px;
 }
 
 #profileimg{

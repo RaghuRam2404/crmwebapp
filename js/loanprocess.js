@@ -1,7 +1,6 @@
 /*
 Master account : raghuram.t+demo@zohotest.com
 */
-var newtry = false;
 var HTTP_PROTOCOL = "http://";
 var CLIENT_ID = "1000.Q9E406JIIMXV43406U49J68XQGAV9H";
 var SCOPES = "ZohoCRM.modules.Leads.ALL,ZohoCRM.users.READ,ZohoCRM.org.READ,AaaServer.profile.Read,ZohoCRM.modules.Notes.ALL,ZohoCRM.modules.attachments.ALL,ZohoCRM.modules.contacts.ALL";
@@ -65,9 +64,9 @@ function loadTopBar(){
 		//debugger;
     	var data = JSON.parse(resp);
     	var name = data["users"][0].full_name
-    	document.getElementById("topname").innerHTML = "<span id='tophello'>Hello, </span><span id='topnamefull'>"+name+"</span>&nbsp;&nbsp;&nbsp;<span id='profileimg'>"+
+    	document.getElementById("topname").innerHTML = "<div class='namediv'><span id='tophello'>Hello, </span><span id='topnamefull'>"+name+"</span>&nbsp;&nbsp;&nbsp;<span id='profileimg'>"+
     													"<img src='https://contacts.zoho.com/file?ID=634144653&fs=thumb' class='profileimage' />"
-    													+"</span>";
+    													+"</span></div>";
 
 	});
 }
