@@ -12,6 +12,10 @@ var cvidmapping = {"pending":"2938383000001645025", "rejected":"2938383000001666
 var cvnames = ["All Applications", "Pending Applications", "Rejected Applications", "Approved Applications"]
 var defaultOption = 1;
 
+function getLanding(){
+	return "2";
+}
+
 function getNum(){
 	var html = window.location.pathname;
 	if(html.endsWith("2.html")){
@@ -23,7 +27,7 @@ function getNum(){
 function checkLogin(bool){
 	var isLoggedIn = localStorage.hasOwnProperty('access_token');
 	if(!((!isLoggedIn && !bool) || (isLoggedIn && bool)))
-		location.href = getBaseURL()+(isLoggedIn?"/home"+getNum()+".html":"/index"+getNum()+".html");
+		location.href = getBaseURL()+(isLoggedIn?"/home"+getLanding()+".html":"/index.html");
 	if(document.getElementById("zes_client_scope") == null){
 		var elem = document.createElement('div');
 		elem.setAttribute("data-scope",SCOPES);
