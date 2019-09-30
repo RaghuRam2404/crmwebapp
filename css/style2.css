@@ -166,7 +166,7 @@ body{
 
 .optionone{
 	cursor: pointer;
-	padding: 8px 12px;
+	padding: 4px 12px;
 	height: 33px;
 	text-align: left;
 	font-size: 14px;
@@ -177,7 +177,10 @@ body{
 }
 
 .selected{
-	background: #F2F2F2 0% 0% no-repeat padding-box;
+	/*background: #F2F2F2 0% 0% no-repeat padding-box;*/
+	background: #514e4e 0% 0% no-repeat padding-box;
+    color: white;
+    border-radius: 4px;
 }
 
 .arrow-up {
@@ -391,22 +394,24 @@ body{
 
 .approvalholder{
 	margin-top: 39px;
+	text-align: right;
 }
 
 .lockicon{
-	height: 16px;
-	width: 16px;
+	height: 24px;
+	width: 24px;
 	float: left;
 }
 
 .waiting{
-	float: right;
+	float: left;
 	font-weight: Regular;
-	font-size: 14px;
+	font-size: 16px;
 	/*font-family: Proxima Nova;*/
 	letter-spacing: 0;
 	color: #BB4B4C;
 	opacity: 1;
+	margin-left: 10px;
 }
 
 #leaddata2{
