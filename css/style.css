@@ -105,7 +105,7 @@
 }
 
 #topname{
-	text-align: left;
+	text-align: right;
 	vertical-align: middle;
 
 }
@@ -254,10 +254,27 @@
 	padding-top: 8px;
 	cursor: pointer;
 }
+.namediv{
+	border: 1px solid #d1d1d1;
+	border-radius: 15px;
+	padding: 7px 3px 10px 9px;
+}
+
+.svgout{
+	fill: #b5b3b3;
+}
+
+.logout{
+	cursor: pointer;
+}
+
+.logouticon:hover svg path{
+	fill: black;
+}
 
 .menuselected{
 	background: #5F67FB 0% 0% no-repeat padding-box;
-	border-radius: 1px;
+	border-radius: 2px;
 	color: #FFFFFF;
 }
 
