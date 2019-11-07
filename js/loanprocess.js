@@ -221,7 +221,7 @@ function populateData(){
 				if(record['Lead_Status'] == 'Pre-Qualified')
 					record['Lead_Status'] = 'Approved'
 				var mail = record['Email'];
-				if(mail.length > 16)
+				if(mail != null && mail.length > 16)
 					mail = mail.substring(0,16)+"..."+mail.substring(mail.length-5, mail.length)
 				var rowd = "<tr "+(record['Lead_Status'] == "Pending" ? "style='cursor: pointer;' onclick='view(\""+record['id']+"\")'" : "")+ ">"+
 								"<td class='name'>"+record['Full_Name']+"</td>"+
