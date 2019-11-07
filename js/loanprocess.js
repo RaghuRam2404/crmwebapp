@@ -200,7 +200,7 @@ function populateData(){
 				if(record['Lead_Status'] == 'Pre-Qualified')
 					record['Lead_Status'] = 'Approved'
 				var mail = record['Email'];
-				if(mail.length > 15)
+				if(mail != null && mail.length > 15)
 					mail = mail.substring(0,15)+"..."
 				var rowd = "<div "+(record['Lead_Status'] == "Pending" ? "style='cursor: pointer;' onclick='view(\""+record['id']+"\")'" : "")+ "class='row indrow'>"+
 								"<div class='col-2 tablecontent'>"+record['Full_Name']+"</div>"+
